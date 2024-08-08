@@ -24,6 +24,8 @@ export const env = createEnv({
     STRIPE_API_KEY: z.string().trim().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().trim().min(1),
     STRIPE_PRO_MONTHLY_PLAN_ID: z.string().trim().min(1),
+    TURSO_CONNECTION_URL: z.string().trim().min(1),
+    TURSO_AUTH_TOKEN: z.string().trim().min(1),
   },
 
   /**
@@ -53,6 +55,8 @@ export const env = createEnv({
     STRIPE_API_KEY: process.env.STRIPE_API_KEY,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     STRIPE_PRO_MONTHLY_PLAN_ID: process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
+    TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
+    TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
     // Client-side env vars
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },

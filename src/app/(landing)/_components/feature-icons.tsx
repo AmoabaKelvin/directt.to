@@ -1,4 +1,5 @@
-import { forwardRef, type SVGProps } from "react";
+import type { SVGProps } from "react";
+import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -28,13 +29,7 @@ const NextjsLight = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
           d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
           fill="url(#paint0_linear_408_134)"
         />
-        <rect
-          x="115"
-          y="54"
-          width="12"
-          height="72"
-          fill="url(#paint1_linear_408_134)"
-        />
+        <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_134)" />
       </g>
       <defs>
         <linearGradient
@@ -86,25 +81,12 @@ const NextjsDark = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
         <circle cx="90" cy="90" r="90" fill="black" />
       </mask>
       <g mask="url(#mask0_408_139)">
-        <circle
-          cx="90"
-          cy="90"
-          r="87"
-          fill="black"
-          stroke="white"
-          strokeWidth="6"
-        />
+        <circle cx="90" cy="90" r="87" fill="black" stroke="white" strokeWidth="6" />
         <path
           d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
           fill="url(#paint0_linear_408_139)"
         />
-        <rect
-          x="115"
-          y="54"
-          width="12"
-          height="72"
-          fill="url(#paint1_linear_408_139)"
-        />
+        <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_139)" />
       </g>
       <defs>
         <linearGradient
@@ -226,40 +208,38 @@ const Drizzle = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
 );
 Drizzle.displayName = "Drizzle";
 
-const TRPC = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
-  ({ className, ...props }, ref) => (
-    <svg
-      ref={ref}
-      {...props}
-      viewBox="0 0 512 512"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      className={cn(className)}
-    >
-      <g>
-        <polygon points="246.2,162.3 202.9,137.3 202.9,187.4 246.2,212.4" />
-        <polygon points="96.5,357.9 139.9,382.9 139.9,332.9 96.5,307.8" />
-        <polygon points="149.1,266.8 105.7,291.9 149.1,316.9 192.4,291.9" />
-        <polygon points="264.7,212.4 308,187.4 308,137.3 264.7,162.3" />
-        <polygon points="298.8,121.3 255.4,96.3 212.2,121.3 255.4,146.4" />
-        <polygon points="201.7,307.8 158.3,332.9 158.3,382.9 201.7,357.9" />
-        <path
-          d="M362,0H150C67.2,0,0,67.2,0,150v212c0,82.8,67.2,150,150,150h212c82.8,0,150-67.2,150-150V150
+const TRPC = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(({ className, ...props }, ref) => (
+  <svg
+    ref={ref}
+    {...props}
+    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    className={cn(className)}
+  >
+    <g>
+      <polygon points="246.2,162.3 202.9,137.3 202.9,187.4 246.2,212.4" />
+      <polygon points="96.5,357.9 139.9,382.9 139.9,332.9 96.5,307.8" />
+      <polygon points="149.1,266.8 105.7,291.9 149.1,316.9 192.4,291.9" />
+      <polygon points="264.7,212.4 308,187.4 308,137.3 264.7,162.3" />
+      <polygon points="298.8,121.3 255.4,96.3 212.2,121.3 255.4,146.4" />
+      <polygon points="201.7,307.8 158.3,332.9 158.3,382.9 201.7,357.9" />
+      <path
+        d="M362,0H150C67.2,0,0,67.2,0,150v212c0,82.8,67.2,150,150,150h212c82.8,0,150-67.2,150-150V150
 		C512,67.2,444.8,0,362,0z M435.6,368.6l-71,41l-31.5-18.2l-76.7,44.3l-76.2-44l-31.1,18l-71-41.1v-82l22.2-12.8v-85.5l84.2-48.6
 		l0,0V116l71-41l71.1,41v22.5l86,49.7v85l23.1,13.3V368.6z"
-        />
-        <polygon points="373.8,383 417.2,357.9 417.2,307.8 373.8,332.9" />
-        <polygon points="364.6,266.9 321.3,291.9 364.6,317 407.9,291.9" />
-        <polygon
-          points="293.6,286.5 364.6,245.5 394.1,262.6 394.1,198.9 326.5,159.9 326.5,198 255.5,239 184.5,198 
+      />
+      <polygon points="373.8,383 417.2,357.9 417.2,307.8 373.8,332.9" />
+      <polygon points="364.6,266.9 321.3,291.9 364.6,317 407.9,291.9" />
+      <polygon
+        points="293.6,286.5 364.6,245.5 394.1,262.6 394.1,198.9 326.5,159.9 326.5,198 255.5,239 184.5,198 
 		184.5,160.9 184.4,160.9 118.7,198.9 118.7,263.1 149.1,245.5 220.1,286.5 220.1,368.5 198.6,381 256.4,414.3 314.6,380.7 
 		293.6,368.5"
-        />
-        <polygon points="312,358 355.4,383 355.4,332.9 312,307.9" />
-      </g>
-    </svg>
-  ),
-);
+      />
+      <polygon points="312,358 355.4,383 355.4,332.9 312,307.9" />
+    </g>
+  </svg>
+));
 TRPC.displayName = "TRPC";
 
 const ShadcnUi = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
@@ -355,10 +335,7 @@ const ReactEmail = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
         d="M112.616 22.176V13.744H114.584V22.176H112.616ZM113.576 11.952C113.181 11.952 112.872 11.856 112.648 11.664C112.435 11.4613 112.328 11.1787 112.328 10.816C112.328 10.4747 112.44 10.1973 112.664 9.984C112.888 9.77067 113.192 9.664 113.576 9.664C113.981 9.664 114.291 9.76534 114.504 9.968C114.728 10.16 114.84 10.4427 114.84 10.816C114.84 11.1467 114.728 11.4187 114.504 11.632C114.28 11.8453 113.971 11.952 113.576 11.952Z"
         fill="currentColor"
       ></path>
-      <path
-        d="M116.675 22.176V10.336H118.659V22.176H116.675Z"
-        fill="currentColor"
-      ></path>
+      <path d="M116.675 22.176V10.336H118.659V22.176H116.675Z" fill="currentColor"></path>
       <defs>
         <clipPath id="clip0_27_291">
           <rect width="32" height="32" rx="8" fill="currentColor"></rect>
@@ -385,15 +362,70 @@ const StripeLogo = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
 );
 StripeLogo.displayName = "StripeLogo";
 
+const BoltIcon = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
+  ({ className, ...props }, ref) => (
+    <svg
+      fill="#ffffff"
+      version="1.1"
+      className={cn(className)}
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 384 512"
+      xmlSpace="preserve"
+    >
+      <polygon points="329.481,136 244.017,136 303.319,0 147.983,0 62.519,196 147.983,196 62.519,392 " />
+    </svg>
+  ),
+);
+BoltIcon.displayName = "BoltIcon";
+
+const GitHubLogoIcon = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
+  ({ className, ...props }, ref) => (
+    <svg
+      viewBox="0 0 256 250"
+      className={cn(className)}
+      fill="#fff"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid"
+    >
+      <path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46 6.397 1.185 8.746-2.777 8.746-6.158 0-3.052-.12-13.135-.174-23.83-35.61 7.742-43.124-15.103-43.124-15.103-5.823-14.795-14.213-18.73-14.213-18.73-11.613-7.944.876-7.78.876-7.78 12.853.902 19.621 13.19 19.621 13.19 11.417 19.568 29.945 13.911 37.249 10.64 1.149-8.272 4.466-13.92 8.127-17.116-28.431-3.236-58.318-14.212-58.318-63.258 0-13.975 5-25.394 13.188-34.358-1.329-3.224-5.71-16.242 1.24-33.874 0 0 10.749-3.44 35.21 13.121 10.21-2.836 21.16-4.258 32.038-4.307 10.878.049 21.837 1.47 32.066 4.307 24.431-16.56 35.165-13.12 35.165-13.12 6.967 17.63 2.584 30.65 1.255 33.873 8.207 8.964 13.173 20.383 13.173 34.358 0 49.163-29.944 59.988-58.447 63.157 4.591 3.972 8.682 11.762 8.682 23.704 0 17.126-.148 30.91-.148 35.126 0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002 256 57.307 198.691 0 128.001 0Zm-80.06 182.34c-.282.636-1.283.827-2.194.39-.929-.417-1.45-1.284-1.15-1.922.276-.655 1.279-.838 2.205-.399.93.418 1.46 1.293 1.139 1.931Zm6.296 5.618c-.61.566-1.804.303-2.614-.591-.837-.892-.994-2.086-.375-2.66.63-.566 1.787-.301 2.626.591.838.903 1 2.088.363 2.66Zm4.32 7.188c-.785.545-2.067.034-2.86-1.104-.784-1.138-.784-2.503.017-3.05.795-.547 2.058-.055 2.861 1.075.782 1.157.782 2.522-.019 3.08Zm7.304 8.325c-.701.774-2.196.566-3.29-.49-1.119-1.032-1.43-2.496-.726-3.27.71-.776 2.213-.558 3.315.49 1.11 1.03 1.45 2.505.701 3.27Zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033-1.448-.439-2.395-1.613-2.103-2.626.301-1.01 1.747-1.484 3.207-1.028 1.446.436 2.396 1.602 2.095 2.622Zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95-1.53.034-2.769-.82-2.786-1.86 0-1.065 1.202-1.932 2.733-1.958 1.522-.03 2.768.818 2.768 1.868Zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37-1.485.271-2.861-.365-3.05-1.386-.184-1.056.893-2.114 2.376-2.387 1.514-.263 2.868.356 3.061 1.403Z" />
+    </svg>
+  ),
+);
+GitHubLogoIcon.displayName = "GitHubLogoIcon";
+
+const ApiIcon = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
+  ({ className, ...props }, ref) => (
+    <svg
+      fill="#ffffff"
+      viewBox="0 0 1024 1024"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="#ffffff"
+      className={cn(className)}
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path d="M917.7 148.8l-42.4-42.4c-1.6-1.6-3.6-2.3-5.7-2.3s-4.1.8-5.7 2.3l-76.1 76.1a199.27 199.27 0 0 0-112.1-34.3c-51.2 0-102.4 19.5-141.5 58.6L432.3 308.7a8.03 8.03 0 0 0 0 11.3L704 591.7c1.6 1.6 3.6 2.3 5.7 2.3 2 0 4.1-.8 5.7-2.3l101.9-101.9c68.9-69 77-175.7 24.3-253.5l76.1-76.1c3.1-3.2 3.1-8.3 0-11.4zM578.9 546.7a8.03 8.03 0 0 0-11.3 0L501 613.3 410.7 523l66.7-66.7c3.1-3.1 3.1-8.2 0-11.3L441 408.6a8.03 8.03 0 0 0-11.3 0L363 475.3l-43-43a7.85 7.85 0 0 0-5.7-2.3c-2 0-4.1.8-5.7 2.3L206.8 534.2c-68.9 68.9-77 175.7-24.3 253.5l-76.1 76.1a8.03 8.03 0 0 0 0 11.3l42.4 42.4c1.6 1.6 3.6 2.3 5.7 2.3s4.1-.8 5.7-2.3l76.1-76.1c33.7 22.9 72.9 34.3 112.1 34.3 51.2 0 102.4-19.5 141.5-58.6l101.9-101.9c3.1-3.1 3.1-8.2 0-11.3l-43-43 66.7-66.7c3.1-3.1 3.1-8.2 0-11.3l-36.6-36.2z"></path>{" "}
+      </g>
+    </svg>
+  ),
+);
+ApiIcon.displayName = "ApiIcon";
+
 export {
-  NextjsLight,
-  NextjsDark,
-  ReactJs,
-  TailwindCss,
-  LuciaAuth,
+  ApiIcon,
+  BoltIcon,
   Drizzle,
-  TRPC,
-  ShadcnUi,
+  LuciaAuth,
+  NextjsDark,
+  NextjsLight,
   ReactEmail,
+  ReactJs,
+  ShadcnUi,
   StripeLogo,
+  TailwindCss,
+  TRPC,
 };

@@ -1,11 +1,15 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
+
 import { env } from "@/env";
+
 import * as schema from "./schema";
 
-export const connection = postgres(env.DATABASE_URL, {
-  max_lifetime: 10, // Remove this line if you're deploying to Docker / VPS
-  // idle_timeout: 20, // Uncomment this line if you're deploying to Docker / VPS
+const client = createClient({
+  url: env.TURSO_CONNECTION_URL,
+  authToken: env.TURSO_AUTH_TOKEN,
 });
 
-export const db = drizzle(connection, { schema });
+export const db = drizzle(client, {
+  schema: schema,
+});

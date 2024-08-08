@@ -1,28 +1,66 @@
-// middleware.ts
-import { verifyRequestOrigin } from "lucia";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest): Promise<NextResponse> {
-  if (request.method === "GET") {
-    return NextResponse.next();
+import { getValidSubdomain } from "./lib/utils/get-valid-subdomain";
+import { getAssetLinksConfig } from "./lib/utils/retrieve-android-assetlinks";
+import { getAppleAppSiteAssociationConfig } from "./lib/utils/retrieve-apple-site-association";
+
+import type { NextRequest } from "next/server";
+async function getAssetLinksMiddleware(req: NextRequest) {
+  const domain = getValidSubdomain(req.headers.get("host"));
+
+  if (!domain) {
+    return new Response(null, { status: 404 });
   }
-  const originHeader = request.headers.get("Origin");
-  const hostHeader = request.headers.get("Host");
-  if (
-    !originHeader ||
-    !hostHeader ||
-    !verifyRequestOrigin(originHeader, [hostHeader])
-  ) {
-    return new NextResponse(null, {
-      status: 403,
+
+  if (req.nextUrl.pathname === "/apple-app-site-association") {
+    return new Response(JSON.stringify(await getAppleAppSiteAssociationConfig(domain)), {
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
-  return NextResponse.next();
+
+  if (req.nextUrl.pathname === "/.well-known/assetlinks.json") {
+    return new Response(JSON.stringify(await getAssetLinksConfig(domain)), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  // MARK: Link Redirections
+  if (
+    req.nextUrl.pathname.length > 1 &&
+    !req.nextUrl.pathname.startsWith("/dashboard") &&
+    !req.nextUrl.pathname.startsWith("/api/trpc") &&
+    !req.nextUrl.pathname.startsWith("/api/v1") &&
+    !req.nextUrl.pathname.startsWith("/api/webhooks") &&
+    !req.nextUrl.pathname.startsWith("/icon") &&
+    req.nextUrl.pathname !== "/"
+  ) {
+    return NextResponse.rewrite(
+      new URL(
+        `/rewrite?redirectTo=${req.nextUrl.pathname.split("/")[1]}&domain=${domain}`,
+        req.url,
+      ),
+    );
+  }
 }
+
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
+
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) auth().protect();
+
+  return getAssetLinksMiddleware(req);
+});
 
 export const config = {
   matcher: [
-    "/((?!api|static|.*\\..*|_next|favicon.ico|sitemap.xml|robots.txt).*)",
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
   ],
 };

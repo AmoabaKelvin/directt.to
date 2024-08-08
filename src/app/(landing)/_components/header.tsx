@@ -1,6 +1,8 @@
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 import Link from "next/link";
-import { RocketIcon } from "@/components/icons";
-import { APP_TITLE } from "@/lib/constants";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { APP_TITLE, DASHBOARD_LINK } from "@/lib/constants";
 
 const routes = [
   { name: "Home", href: "/" },
@@ -43,11 +45,9 @@ export const Header = () => {
             </div>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link
-          className="flex items-center justify-center text-xl font-medium"
-          href="/"
-        >
-          <RocketIcon className="mr-2 h-5 w-5" /> {APP_TITLE}
+        <Link className="flex items-center justify-center text-xl font-medium" href="/">
+          <Image src="/logo/logo.png" alt="Logo" width={60} height={60} />
+          {APP_TITLE}
         </Link>
         <nav className="ml-10 hidden gap-4 sm:gap-6 md:flex">
           {routes.map(({ name, href }) => (
@@ -61,9 +61,16 @@ export const Header = () => {
           ))}
         </nav>
         <div className="ml-auto">
-          <Button asChild variant={"secondary"}>
-            <Link href="/login">Login</Link>
-          </Button>
+          <SignedOut>
+            <Button asChild variant={"secondary"}>
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          </SignedOut>
+          <SignedIn>
+            <Button asChild variant={"secondary"}>
+              <Link href={DASHBOARD_LINK}>Dashboard</Link>
+            </Button>
+          </SignedIn>
         </div>
       </div>
     </header>

@@ -1,12 +1,13 @@
 import { type ReactNode } from "react";
-import { Header } from "./_components/header";
+
 import { Footer } from "./_components/footer";
+import { Header } from "./_components/header";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="mx-auto mt-16 max-w-6xl">{children}</div>
       <Footer />
     </>
   );

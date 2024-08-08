@@ -1,12 +1,15 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
 import { APP_TITLE } from "@/lib/constants";
-import { type ReactNode } from "react";
-import { type Metadata } from "next";
-import { Header } from "./_components/header";
+
 import { Footer } from "./_components/footer";
+import { Header } from "./_components/header";
 
 export const metadata: Metadata = {
   title: APP_TITLE,
-  description: "A Next.js starter with T3 stack and Lucia auth.",
+  description: "Dynamic links for your applications",
+  icons: [{ rel: "icon", url: "/icon.png" }],
 };
 
 function LandingPageLayout({ children }: { children: ReactNode }) {

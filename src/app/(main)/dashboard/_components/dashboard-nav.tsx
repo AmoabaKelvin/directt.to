@@ -1,27 +1,47 @@
 "use client";
 
+import { Braces, CableIcon, FolderOpen, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FileTextIcon, CreditCard, GearIcon } from "@/components/icons";
 
+import { CreditCard, GearIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 const items = [
+  // {
+  //   title: "Dashboard",
+  //   href: "/dashboard",
+  //   icon: FileTextIcon,
+  // },
   {
-    title: "Posts",
-    href: "/dashboard",
-    icon: FileTextIcon,
+    title: "Projects",
+    href: "/dashboard/projects",
+    icon: FolderOpen,
   },
-
+  {
+    title: "Apps",
+    href: "/dashboard/apps",
+    icon: LayoutGrid,
+  },
+  {
+    title: "Links",
+    href: "/dashboard/links",
+    icon: CableIcon,
+  },
   {
     title: "Billing",
     href: "/dashboard/billing",
     icon: CreditCard,
   },
   {
-    title: "Settings",
-    href: "/dashboard/settings",
+    title: "Domains",
+    href: "/dashboard/domains",
     icon: GearIcon,
+  },
+  {
+    title: "Tokens",
+    href: "/dashboard/tokens",
+    icon: Braces,
   },
 ];
 

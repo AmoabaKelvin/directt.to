@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { CheckIcon } from "@/components/icons";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,31 +10,70 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { formatDate } from "@/lib/utils";
-import { type RouterOutputs } from "@/trpc/shared";
+import { cn, formatDate } from "@/lib/utils";
+import { api } from "@/trpc/server";
+
 import { ManageSubscriptionForm } from "./manage-subscription-form";
 
-interface BillingProps {
-  stripePromises: Promise<
-    [RouterOutputs["stripe"]["getPlans"], RouterOutputs["stripe"]["getPlan"]]
-  >;
-}
+interface BillingProps {}
 
-export async function Billing({ stripePromises }: BillingProps) {
-  const [plans, plan] = await stripePromises;
+export async function Billing({}: BillingProps) {
+  const userPlan = await api.payment.getPlan.query();
+
+  const plans = [
+    {
+      isPro: true,
+      name: "Pro",
+      description: "Unlimited links",
+      price: "$4.99",
+      features: [
+        // "Unlimited links",
+        // "Custom domains",
+        // "Applinks support",
+        // "Asset links support",
+        // "Link analytics",
+        // "Priority support",
+        // "Analytics Dashboard (coming soon)",
+        "Everything in free plan",
+        "Custom domains",
+        "Unlimited links",
+        "Priority support",
+        "Advanced analytics (soon)",
+        // "Analytics Dashboard (soon)",
+        "Customizable redirect page (soon)",
+      ],
+    },
+    {
+      isPro: false,
+      name: "Free",
+      description: "5000 links",
+      price: "$0.00",
+      features: [
+        "5000 free links",
+        "Free subdomains",
+        "Applinks support",
+        "Asset links support",
+        "Link analytics",
+        "General support",
+      ],
+    },
+  ];
+
+  const currentPlan = userPlan.isPro ? plans[0] : plans[1];
 
   return (
     <>
       <section>
         <Card className="space-y-2 p-8">
-          <h3 className="text-lg font-semibold sm:text-xl">{plan?.name ?? "Free"} plan</h3>
+          <h3 className="text-lg font-semibold sm:text-xl">{currentPlan!.name} plan</h3>
           <p className="text-sm text-muted-foreground">
-            {!plan?.isPro
-              ? "The free plan is limited to 2 posts. Upgrade to the Pro plan to unlock unlimited posts."
-              : plan.isCanceled
-                ? "Your plan will be canceled on "
+            {!userPlan.isPro
+              ? "The free plan is limited to 5000 links. Upgrade to the Pro plan for unlimited links and more features."
+              : userPlan.subscriptionDetails?.renews_at
+                ? "Your plan will be renewed on "
                 : "Your plan renews on "}
-            {plan?.stripeCurrentPeriodEnd ? formatDate(plan.stripeCurrentPeriodEnd) : null}
+            {userPlan.currentPeriodEnd ? formatDate(new Date(userPlan.currentPeriodEnd)) : null}
+            <p>Thank you for supporting us! 💖</p>
           </p>
         </Card>
       </section>
@@ -65,17 +103,22 @@ export async function Billing({ stripePromises }: BillingProps) {
             <CardFooter className="pt-4">
               {item.name === "Free" ? (
                 <Button className="w-full" asChild>
-                  <Link href="/dashboard">
-                    Get started
-                    <span className="sr-only">Get started</span>
+                  <Link
+                    href="/dashboard"
+                    className={cn({
+                      "pointer-events-none cursor-not-allowed text-muted-foreground":
+                        !userPlan.isPro,
+                    })}
+                  >
+                    {userPlan.isPro ? "Get started" : "Current Plan"}
+                    <span className="sr-only">Current Plan</span>
                   </Link>
                 </Button>
               ) : (
                 <ManageSubscriptionForm
-                  stripePriceId={item.stripePriceId}
-                  isPro={plan?.isPro ?? false}
-                  stripeCustomerId={plan?.stripeCustomerId}
-                  stripeSubscriptionId={plan?.stripeSubscriptionId}
+                  isPro={userPlan.isPro}
+                  customerId={userPlan.customerId}
+                  subscriptionId={userPlan.subscriptionId}
                 />
               )}
             </CardFooter>
