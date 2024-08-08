@@ -7,13 +7,6 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z
-      .string()
-      .url()
-      .refine(
-        (str) => !str.includes("YOUR_DATABASE_URL_HERE"),
-        "You forgot to change the default URL",
-      ),
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     TURSO_CONNECTION_URL: z.string().trim().min(1),
     TURSO_AUTH_TOKEN: z.string().trim().min(1),
@@ -35,7 +28,6 @@ export const env = createEnv({
    */
   runtimeEnv: {
     // Server-side env vars
-    DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
