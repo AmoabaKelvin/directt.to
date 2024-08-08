@@ -1,4 +1,4 @@
-export const APP_TITLE = "Redirectt";
+export const APP_TITLE = "Directt";
 export const DATABASE_PREFIX = "Duy";
 export const EMAIL_SENDER = '"Acme" <noreply@acme.com>';
 
@@ -11,7 +11,7 @@ export enum Paths {
   ResetPassword = "/reset-password",
 }
 
-export const PROJECT_DOMAIN = "redirectt.com";
+export const PROJECT_DOMAIN = "directt.to";
 
 export const DASHBOARD_LINK = "/dashboard/projects";
 
