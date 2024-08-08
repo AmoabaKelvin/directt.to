@@ -10,8 +10,8 @@ import ProjectCard from "./projects/_components/project-card";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Posts",
-  description: "Manage your posts here",
+  title: "Dashboard",
+  description: "Get an overview of your projects and links",
 };
 
 interface Props {
