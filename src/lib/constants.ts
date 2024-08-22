@@ -1,5 +1,4 @@
-export const APP_TITLE = "Directt";
-export const DATABASE_PREFIX = "Duy";
+export const APP_TITLE = "Directt.to";
 export const EMAIL_SENDER = '"Acme" <noreply@acme.com>';
 
 export enum Paths {

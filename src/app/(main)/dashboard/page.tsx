@@ -17,10 +17,7 @@ export const metadata: Metadata = {
 interface Props {
   searchParams: Record<string, string | string[] | undefined>;
 }
-
 export default async function DashboardPage({ searchParams }: Props) {
-  // const promises = Promise.all([api.stripe.getPlan.query()]);
-
   const projects = await api.project.list.query();
   const links = await api.link.list.query({});
 
