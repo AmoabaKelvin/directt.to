@@ -9,7 +9,7 @@ import { getAppleAppSiteAssociationConfig } from "./lib/utils/retrieve-apple-sit
 import type { NextRequest } from "next/server";
 async function getAssetLinksMiddleware(req: NextRequest) {
   const host = req.headers.get("host");
-  const isProjectDomain = PROJECT_DOMAINS.includes(host!);
+  const isProjectDomain = PROJECT_DOMAINS.includes(host!) || "localhost:3000";
   const domain = isProjectDomain ? host : getValidSubdomain(req.headers.get("host"));
 
   if (!domain || !isProjectDomain) {
@@ -36,6 +36,8 @@ async function getAssetLinksMiddleware(req: NextRequest) {
   if (
     req.nextUrl.pathname.length > 1 &&
     !req.nextUrl.pathname.startsWith("/dashboard") &&
+    !req.nextUrl.pathname.startsWith("/sign-in") &&
+    !req.nextUrl.pathname.startsWith("/sign-up") &&
     !req.nextUrl.pathname.startsWith("/api/trpc") &&
     !req.nextUrl.pathname.startsWith("/api/v1") &&
     !req.nextUrl.pathname.startsWith("/api/webhooks") &&
