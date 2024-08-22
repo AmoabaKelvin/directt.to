@@ -12,6 +12,8 @@ export enum Paths {
 
 export const PROJECT_DOMAIN = "directt.to";
 
+export const PROJECT_DOMAINS = ["directt.to", "www.directt.to"];
+
 export const DASHBOARD_LINK = "/dashboard/projects";
 
 export const socialMediaAgents = ["Twitter", "Facebook", "LinkedIn", "WhatsApp"];

@@ -1,15 +1,18 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+import { PROJECT_DOMAINS } from "./lib/constants";
 import { getValidSubdomain } from "./lib/utils/get-valid-subdomain";
 import { getAssetLinksConfig } from "./lib/utils/retrieve-android-assetlinks";
 import { getAppleAppSiteAssociationConfig } from "./lib/utils/retrieve-apple-site-association";
 
 import type { NextRequest } from "next/server";
 async function getAssetLinksMiddleware(req: NextRequest) {
-  const domain = getValidSubdomain(req.headers.get("host"));
+  const host = req.headers.get("host");
+  const isProjectDomain = PROJECT_DOMAINS.includes(host!);
+  const domain = isProjectDomain ? host : getValidSubdomain(req.headers.get("host"));
 
-  if (!domain) {
+  if (!domain || !isProjectDomain) {
     return new Response(null, { status: 404 });
   }
 
