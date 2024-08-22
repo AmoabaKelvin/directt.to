@@ -63,7 +63,7 @@ const HomePage = () => {
           </p>
           <div className="flex justify-center gap-4">
             <Button size="lg" asChild>
-              <Link href="/login">Get Started</Link>
+              <Link href="/sign-in">Get Started</Link>
             </Button>
           </div>
         </div>
