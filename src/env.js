@@ -10,6 +10,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     TURSO_CONNECTION_URL: z.string().trim().min(1),
     TURSO_AUTH_TOKEN: z.string().trim().min(1),
+    WEBHOOK_SECRET: z.string().trim().min(1),
   },
 
   /**
@@ -31,6 +32,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
+    WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
     // Client-side env vars
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
