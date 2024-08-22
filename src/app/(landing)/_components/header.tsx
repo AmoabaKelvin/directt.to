@@ -17,7 +17,7 @@ const routes = [
   { name: "Features", href: "/#features" },
   {
     name: "Documentation",
-    href: "https://www.touha.dev/posts/simple-nextjs-t3-authentication-with-lucia",
+    href: "https://docs.directt.to/api-reference/introduction",
   },
 ] as const;
 
