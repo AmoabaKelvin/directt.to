@@ -74,8 +74,7 @@ const HomePage = () => {
             <a id="features"></a> Features
           </h1>
           <p className="mb-10 text-balance text-center text-muted-foreground md:text-lg lg:text-xl">
-            This starter template is a guide to help you get started with Next.js for large scale
-            applications. Feel free to add or remove features to suit your needs.
+            Seamlessly connect users across devices with smart, customizable links that never break.
           </p>
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {features.map((feature, i) => (
