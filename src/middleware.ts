@@ -39,6 +39,7 @@ async function getAssetLinksMiddleware(req: NextRequest) {
     !req.nextUrl.pathname.startsWith("/sign-in") &&
     !req.nextUrl.pathname.startsWith("/sign-up") &&
     !req.nextUrl.pathname.startsWith("/api/trpc") &&
+    !req.nextUrl.pathname.startsWith("/legal") &&
     !req.nextUrl.pathname.startsWith("/api/v1") &&
     !req.nextUrl.pathname.startsWith("/api/webhooks") &&
     !req.nextUrl.pathname.startsWith("/icon") &&
