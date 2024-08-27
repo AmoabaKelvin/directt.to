@@ -11,6 +11,8 @@ export const env = createEnv({
     TURSO_CONNECTION_URL: z.string().trim().min(1),
     TURSO_AUTH_TOKEN: z.string().trim().min(1),
     WEBHOOK_SECRET: z.string().trim().min(1),
+    UMAMI_URL: z.string().trim().min(1),
+    UMAMI_TRACKING_ID: z.string().trim().min(1),
   },
 
   /**
@@ -33,6 +35,8 @@ export const env = createEnv({
     TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
     WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
+    UMAMI_URL: process.env.UMAMI_URL,
+    UMAMI_TRACKING_ID: process.env.UMAMI_TRACKING_ID,
     // Client-side env vars
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },

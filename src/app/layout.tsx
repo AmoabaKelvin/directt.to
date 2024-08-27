@@ -1,17 +1,17 @@
 import "@/styles/globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 
-// import { Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { env } from "@/env";
 import { APP_TITLE } from "@/lib/constants";
 import { spaceGrotesk } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { TRPCReactProvider } from "@/trpc/react";
 
 import type { Metadata, Viewport } from "next";
-
 export const metadata: Metadata = {
   title: {
     default: APP_TITLE,
@@ -31,6 +31,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider>
+      {env.UMAMI_TRACKING_ID && (
+        <Script defer src={env.UMAMI_URL} data-website-id={env.UMAMI_TRACKING_ID} />
+      )}
       <html lang="en" suppressHydrationWarning>
         <body className={cn("min-h-screen bg-background antialiased", spaceGrotesk.className)}>
           <ThemeProvider
