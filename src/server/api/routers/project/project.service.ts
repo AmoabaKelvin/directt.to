@@ -70,28 +70,28 @@ export const getUserProjects = async (ctx: ProtectedTRPCContext) => {
 };
 
 export const updateProject = async (ctx: ProtectedTRPCContext, input: UpdateProjectInput) => {
-  const { id, ...updateData } = input;
+  const { id, androidAppId, iosAppId, ...otherUpdateData } = input;
 
-  // Update the project
-  await ctx.db.update(projects).set(updateData).where(eq(projects.id, id));
+  return await ctx.db.transaction(async (tx) => {
+    // First, remove project associations from any existing apps
+    await tx.update(androidApps).set({ projectId: null }).where(eq(androidApps.projectId, id));
+    await tx.update(iosApps).set({ projectId: null }).where(eq(iosApps.projectId, id));
 
-  // Update Android app association if changed
-  if (updateData.androidAppId !== undefined) {
-    await ctx.db
-      .update(androidApps)
-      .set({ projectId: updateData.androidAppId || null })
-      .where(eq(androidApps.projectId, id));
-  }
+    // Update the project
+    await tx.update(projects).set(otherUpdateData).where(eq(projects.id, id));
 
-  // Update iOS app association if changed
-  if (updateData.iosAppId !== undefined) {
-    await ctx.db
-      .update(iosApps)
-      .set({ projectId: updateData.iosAppId || null })
-      .where(eq(iosApps.projectId, id));
-  }
+    // Update Android app association if provided
+    if (androidAppId) {
+      await tx.update(androidApps).set({ projectId: id }).where(eq(androidApps.id, androidAppId));
+    }
 
-  return { success: true };
+    // Update iOS app association if provided
+    if (iosAppId) {
+      await tx.update(iosApps).set({ projectId: id }).where(eq(iosApps.id, iosAppId));
+    }
+
+    return { success: true };
+  });
 };
 
 export const deleteProject = async (ctx: ProtectedTRPCContext, input: DeleteProjectInput) => {
