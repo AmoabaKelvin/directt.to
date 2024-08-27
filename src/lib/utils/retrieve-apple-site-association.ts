@@ -26,7 +26,7 @@ export async function getAppleAppSiteAssociationConfig(domain: string) {
       apps: [],
       details: [
         {
-          appId: `${project.iosApp.teamId}.${project.iosApp.bundleId}`,
+          appID: `${project.iosApp.teamId}.${project.iosApp.bundleId}`,
           paths: ["*"],
         },
       ],
